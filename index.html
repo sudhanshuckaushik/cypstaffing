@@ -188,6 +188,8 @@ body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:var(--
 </div></div>
 <script>
 var SHEETS_URL="https://script.google.com/macros/s/AKfycbwk4LYmpO-XyFmD-c81qc8ORo97QRmDjb1S_VwN6QsevRBIphkDVBk0Y_evxgBZqPe3/exec";
+var DRIVE_API_KEY="AIzaSyDBmmcFauyEFZQlNq36ADjtAE8VLynMg_k";
+var DRIVE_FOLDER_ID="17PuYdyoqfCrF_4hXd2WxLgmoCE8F3vjY";
 var REGIONS=["No preference","South Asia","Southeast Asia","East Asia","Sub-Saharan Africa","North Africa & Middle East","Western Europe","Eastern Europe & Balkans","Latin America & Caribbean","North America","Pacific Islands","Central Asia"];
 var POLICY=["Climate & Environment","Energy & Clean Technology","Urban Planning & Housing","Education & Skills","Public Health","Gender Equality & Rights","Economic Justice & Labour","Digital Rights & AI Governance","Trade & Finance","Peace & Security","Migration & Refugees","Food & Agriculture","Culture & Creative Industries","Justice & Rule of Law","Youth Representation"];
 var WORK_TYPES=["Legislative Research","Policy Drafting","Campaign Strategy","Social Media & Comms","Speech & Report Writing","Constituency Work","International Outreach","Parliamentary Monitoring","Data & Analytics","Event Organisation","Stakeholder Engagement","Media & Press Relations"];
@@ -224,7 +226,52 @@ function handleDragOver(e){e.preventDefault();var dz=el("dropZone");if(dz)dz.cla
 function handleDragLeave(){var dz=el("dropZone");if(dz)dz.classList.remove("drag-over");}
 function handleDrop(e){e.preventDefault();var dz=el("dropZone");if(dz)dz.classList.remove("drag-over");var f=e.dataTransfer.files[0];if(f)processFile(f);}
 function handleFileSelected(input){var f=input.files[0];if(f)processFile(f);input.value="";}
-function processFile(file){var ok=["application/pdf","application/msword","application/vnd.openxmlformats-officedocument.wordprocessingml.document"];if(ok.indexOf(file.type)<0&&!file.name.match(/\.(pdf|doc|docx)$/i)){addBubble("Please upload a PDF, DOC, or DOCX file.","bot","error");return;}if(file.size>5*1024*1024){addBubble("That file is too large - please keep it under 5 MB.","bot","error");return;}resumeFile=file;collected["resume_filename"]=file.name;collected["resume_size"]=file.size;var ur=el("uploadRow");if(ur)ur.remove();addFileBubble(file.name,file.size);awaitingFile=false;setTimeout(function(){addTyping();delay(800).then(function(){removeTyping();addBubble("Perfect - CV attached!","bot");return delay(600);}).then(function(){currentStep=STEPS.findIndex(function(s){return s.key==="done";});updateProgress(currentStep);showCurrentStep();});},400);}
+function uploadToDrive(file){
+  return new Promise(function(resolve,reject){
+    var metadata={name:file.name,parents:[DRIVE_FOLDER_ID]};
+    var form=new FormData();
+    form.append("metadata",new Blob([JSON.stringify(metadata)],{type:"application/json"}));
+    form.append("file",file);
+    fetch("https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart&fields=id,name,webViewLink&key="+DRIVE_API_KEY,{method:"POST",body:form})
+    .then(function(r){return r.json();})
+    .then(function(d){
+      if(d.id){
+        fetch("https://www.googleapis.com/drive/v3/files/"+d.id+"/permissions?key="+DRIVE_API_KEY,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({role:"reader",type:"anyone"})})
+        .then(function(){resolve("https://drive.google.com/file/d/"+d.id+"/view");})
+        .catch(function(){resolve("https://drive.google.com/file/d/"+d.id+"/view");});
+      } else {
+        reject("Upload failed: "+JSON.stringify(d));
+      }
+    }).catch(reject);
+  });
+}
+function processFile(file){
+  var ok=["application/pdf","application/msword","application/vnd.openxmlformats-officedocument.wordprocessingml.document"];
+  if(ok.indexOf(file.type)<0&&!file.name.match(/\.(pdf|doc|docx)$/i)){addBubble("Please upload a PDF, DOC, or DOCX file.","bot","error");return;}
+  if(file.size>5*1024*1024){addBubble("That file is too large - please keep it under 5 MB.","bot","error");return;}
+  resumeFile=file;
+  collected["resume_filename"]=file.name;
+  var ur=el("uploadRow");if(ur)ur.remove();
+  addFileBubble(file.name,file.size);
+  awaitingFile=false;
+  addTyping();
+  uploadToDrive(file).then(function(link){
+    collected["resume_link"]=link;
+    collected["resume_filename"]=file.name;
+    removeTyping();
+    addBubble("Perfect - CV uploaded successfully!","bot");
+    return delay(600);
+  }).catch(function(err){
+    removeTyping();
+    addBubble("CV name saved. There was an issue uploading the file - please also email it to placements@centreforyouthpolicy.org.","bot");
+    collected["resume_link"]="Upload failed - email requested";
+    return delay(600);
+  }).then(function(){
+    currentStep=STEPS.findIndex(function(s){return s.key==="done";});
+    updateProgress(currentStep);
+    showCurrentStep();
+  });
+}
 function addTermsCard(){var ca=el("chatArea");var row=document.createElement("div");row.className="bubble-row bot";row.appendChild(botAvatar());var card=document.createElement("div");card.className="terms-card";card.innerHTML='<div class="terms-header"><div class="terms-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M9 12l2 2 4-4" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="12" r="9" stroke="white" stroke-width="2"/></svg></div><div class="terms-header-title">Programme Terms - please read before applying</div></div><div class="terms-body"><div class="terms-item"><div class="terms-bullet remote"><svg width="11" height="11" viewBox="0 0 24 24" fill="none"><rect x="2" y="3" width="20" height="14" rx="2" stroke="#0369a1" stroke-width="2"/><path d="M8 21h8M12 17v4" stroke="#0369a1" stroke-width="2" stroke-linecap="round"/></svg></div><div class="terms-item-text"><b>Fully remote opportunity.</b> This placement is conducted entirely online - work from anywhere in the world alongside your assigned elected representative.</div></div><div class="terms-item"><div class="terms-bullet unpaid"><svg width="11" height="11" viewBox="0 0 24 24" fill="none"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" stroke="#b45309" stroke-width="2.5" stroke-linecap="round"/></svg></div><div class="terms-item-text"><b>Unpaid position.</b> This is a voluntary internship. No financial compensation, stipend, or reimbursement is provided.</div></div><div class="terms-item"><div class="terms-bullet time"><svg width="11" height="11" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#9d174d" stroke-width="2"/><path d="M12 7v5l3 3" stroke="#9d174d" stroke-width="2" stroke-linecap="round"/></svg></div><div class="terms-item-text"><b>Time commitment.</b> 4-6 months at approximately 5 hours per week, agreed directly with your assigned representative.</div></div><div class="terms-item"><div class="terms-bullet connect"><svg width="11" height="11" viewBox="0 0 24 24" fill="none"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke="#2d3494" stroke-width="2"/><circle cx="9" cy="7" r="4" stroke="#2d3494" stroke-width="2"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" stroke="#2d3494" stroke-width="2" stroke-linecap="round"/></svg></div><div class="terms-item-text"><b>CYP\'s role is connection only.</b> The Centre for Youth Policy acts solely as a matchmaking body. CYP bears no responsibility for the day-to-day working relationship, tasks assigned, or outcomes of the placement.</div></div><div class="terms-item"><div class="terms-bullet cert"><svg width="11" height="11" viewBox="0 0 24 24" fill="none"><path d="M12 15l-2 5 2-1 2 1-2-5" stroke="#15803d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="8" r="6" stroke="#15803d" stroke-width="2"/></svg></div><div class="terms-item-text"><b>Certificate &amp; completion letter.</b> Upon finishing your internship, you will receive an official CYP Certificate of Completion and a signed letter confirming your contribution.</div></div><div class="terms-disclaimer">By clicking "I agree &amp; continue", you acknowledge that you have read and understood these terms. This does not constitute a formal contract between you and CYP or the elected representative.</div><button class="terms-agree-btn" id="agreeBtn" onclick="agreeToTerms()">I agree &amp; continue &rarr;</button></div>';row.appendChild(card);ca.appendChild(row);scrollBottom();}
 function agreeToTerms(){var btn=el("agreeBtn");btn.disabled=true;btn.textContent="Agreed";collected["terms_agreed"]="Yes";awaitingTerms=false;addBubble("I've read and agree to the programme terms.","user");currentStep=STEPS.findIndex(function(s){return s.key==="full_name";});updateProgress(currentStep);setTimeout(showCurrentStep,500);}
 function showChips(options,multi,max,label,sublabel){awaitingChips=true;multiSel=[];chipMax=max||null;el("chipsLabel").textContent=label||(multi||max?"Select all that apply":"Choose one");var sl=el("chipsSublabel");if(sublabel){sl.textContent=sublabel;sl.style.display="block";}else{sl.style.display="none";}var container=el("chipsContainer");container.innerHTML="";options.forEach(function(opt){var c=document.createElement("div");c.className="chip";c.textContent=opt;c.onclick=function(){var isSel=multiSel.indexOf(opt)>-1;if(!multi&&!max){container.querySelectorAll(".chip").forEach(function(x){x.classList.remove("selected");});c.classList.add("selected");multiSel=[opt];setTimeout(confirmChips,280);}else{if(isSel){multiSel=multiSel.filter(function(x){return x!==opt;});c.classList.remove("selected");}else{if(chipMax&&multiSel.length>=chipMax)return;multiSel.push(opt);c.classList.add("selected");}updateChipCount();}};container.appendChild(c);});var isM=multi||(max&&max>1);el("chipsAction").style.display=isM?"flex":"none";el("chipsConfirmBtn").disabled=true;el("chipsCount").textContent="";el("chipsArea").style.display="block";el("userInput").disabled=true;el("sendBtn").disabled=true;}
@@ -236,7 +283,14 @@ function delay(ms){return new Promise(function(r){setTimeout(r,ms);});}
 function callClaude(system,userMsg){return fetch("https://api.anthropic.com/v1/messages",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({model:"claude-sonnet-4-20250514",max_tokens:300,system:system,messages:[{role:"user",content:userMsg}]})}).then(function(r){return r.json();}).then(function(d){return d.content&&d.content[0]?d.content[0].text:null;}).catch(function(){return null;});}
 function getContextualQuestion(step){var ctx=JSON.stringify(collected);var prompts={current_situation:"You are a warm intake assistant for the Centre for Youth Policy's international MP staffing programme. Collected so far: "+ctx+". In 1-2 natural sentences, ask the applicant about their current situation. Be open and warm. Reply with the question only.",institution:"You are a warm intake assistant for CYP. The applicant said: \""+collected.current_situation+"\". Write ONE adaptive question asking about their university, employer, or equivalent. If they don't study or are self-employed, ask the relevant equivalent. Reply with the question only.",languages:"You are a warm intake assistant for CYP. Collected: "+ctx+". Ask about languages spoken in one sentence, include level. Reply with the question only.",availability:"You are a warm intake assistant for CYP. Collected: "+ctx+". Ask when they can start and how long. Mention 4-6 months at ~5 hrs/week, fully remote. One sentence. Reply with the question only.",motivation:"You are a warm intake assistant for CYP. Collected: "+ctx+". Ask for their motivation in a personalised way referencing something specific from their profile. 1-2 sentences. Reply with the question only."};return callClaude("You are a professional, warm intake chatbot. Reply with only the question, no preamble.",prompts[step.key]||step.fallbackPrompt).then(function(r){return r||step.fallbackPrompt;});}
 function getAdaptiveAck(userInput,stepKey){var ctx=JSON.stringify(collected);var system="You are a warm intake assistant for CYP. The applicant just answered \""+stepKey+"\" with: \""+userInput+"\". Context: "+ctx+". Acknowledge warmly in 1 sentence. If unusual (doesn't study, between jobs, self-taught), acknowledge specifically. Do NOT ask a question. Max 2 sentences.";var fb={current_situation:"Thanks for sharing that!",institution:"Got it, noted!",languages:"Wonderful, that's really useful.",availability:"Perfect, we'll keep that in mind.",motivation:"That's a compelling reason - thank you for sharing."};return callClaude(system,userInput).then(function(r){return r||fb[stepKey]||"Got it, thank you!";});}
-function submitToSheets(){el("submittingBar").style.display="flex";return fetch(SHEETS_URL,{method:"POST",mode:"no-cors",headers:{"Content-Type":"application/json"},body:JSON.stringify(collected)}).then(function(){el("submittingBar").style.display="none";}).catch(function(){el("submittingBar").style.display="none";});}
+function submitToSheets(){
+  el("submittingBar").style.display="flex";
+  var payload=Object.assign({},collected);
+  if(!payload.resume_link) payload.resume_link="Not uploaded";
+  return fetch(SHEETS_URL,{method:"POST",mode:"no-cors",headers:{"Content-Type":"application/json"},body:JSON.stringify(payload)})
+  .then(function(){el("submittingBar").style.display="none";})
+  .catch(function(){el("submittingBar").style.display="none";});
+}
 function processAnswer(val){if(isProcessing)return;isProcessing=true;var step=STEPS[currentStep];collected[step.key]=val;var p;if(step.isContextual){addTyping();p=getAdaptiveAck(val,step.key).then(function(ack){removeTyping();addBubble(ack,"bot");return delay(500);});}else{p=Promise.resolve();}p.then(function(){currentStep=STEPS.findIndex(function(s){return s.key===step.next;});if(currentStep<0)currentStep=STEPS.length-1;updateProgress(currentStep);return showCurrentStep();}).then(function(){isProcessing=false;});}
 function showCurrentStep(){var step=STEPS[currentStep];if(!step)return Promise.resolve();
 if(step.key==="done"){return submitToSheets().then(function(){addTyping();return delay(900);}).then(function(){removeTyping();var hasResume=resumeFile!==null;addBubble("That's everything - and on behalf of everyone at the Centre for Youth Policy, thank you. We genuinely mean it.\n\nDedicating your time and energy to supporting young leaders around the world is no small thing. From Africa to Europe, we've been able to place volunteers with over 12 MPs - and it's people like you who make that possible.\n\nWe'll be in touch within 5 business days to discuss your match."+((!hasResume)?"\n\nPlease also send your CV to <b>placements@centreforyouthpolicy.org</b> with subject: <i>CYP Intern 2026 - [Your Name]</i>":""),"bot");el("completeCard").style.display="flex";el("userInput").disabled=true;el("sendBtn").disabled=true;el("attachBtn").disabled=true;});}
