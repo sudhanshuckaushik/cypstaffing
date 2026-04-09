@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Request an Intern — CYP Staffing for International Representatives</title>
+
+<!-- Social / OG Meta -->
+<meta property="og:title" content="Request a Dedicated Intern — Centre for Youth Policy"/>
+<meta property="og:description" content="The CYP Staffing Programme connects elected representatives with motivated interns from top universities around the world. Apply to receive your match."/>
+<meta property="og:image" content="https://fellows.centreforyouthpolicy.org/preview.png"/>
+<meta property="og:url" content="https://fellows.centreforyouthpolicy.org/mp"/>
+<meta property="og:type" content="website"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="Request a Dedicated Intern — Centre for Youth Policy"/>
+<meta name="twitter:description" content="The CYP Staffing Programme connects elected representatives with motivated interns from top universities around the world."/>
+<meta name="twitter:image" content="https://fellows.centreforyouthpolicy.org/preview.png"/>
+
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --navy:#1a1f5e;--navy-mid:#2d3494;--navy-light:#eef0fc;--navy-border:#c5c9f0;
+  --text:#1a1a2e;--text-muted:#6b7280;--surface:#fff;--bg:#f6f7fb;--border:rgba(0,0,0,0.1);
+  --success:#15803d;--success-bg:#e8f5ee;--error:#c0392b;--error-bg:#fff8f8;
+}
+html{scroll-behavior:smooth}
+body{font-family:"Segoe UI",system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;padding:32px 20px 60px}
+a{color:var(--navy-mid);text-decoration:none}
+a:hover{text-decoration:underline}
+
+.page{max-width:720px;margin:0 auto}
+
+/* HEADER */
+.site-header{display:flex;align-items:center;gap:16px;margin-bottom:40px;padding-bottom:20px;border-bottom:0.5px solid var(--border)}
+.site-header img{height:44px;width:auto}
+.site-header-divider{width:1px;height:36px;background:var(--border);flex-shrink:0}
+.site-header-eyebrow{font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-muted);margin-bottom:2px}
+.site-header-title{font-size:13px;font-weight:600;color:var(--navy)}
+
+/* HERO */
+.hero{background:linear-gradient(135deg,#1a1f5e 0%,#2d3494 100%);border-radius:16px;padding:36px 40px;margin-bottom:32px;position:relative;overflow:hidden}
+.hero-chakra{position:absolute;right:-40px;top:-40px;width:180px;height:180px;opacity:0.05;pointer-events:none}
+.hero-tag{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,0.12);border:0.5px solid rgba(255,255,255,0.2);border-radius:20px;padding:5px 12px;font-size:11px;color:rgba(255,255,255,0.8);margin-bottom:14px}
+.hero-dot{width:6px;height:6px;border-radius:50%;background:#5DE0A5;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+.hero h1{font-size:24px;font-weight:600;color:#fff;line-height:1.3;margin-bottom:10px}
+.hero p{font-size:14px;color:rgba(255,255,255,0.78);line-height:1.75;max-width:540px}
+.hero-stats{display:flex;gap:28px;margin-top:24px;padding-top:20px;border-top:0.5px solid rgba(255,255,255,0.15);flex-wrap:wrap}
+.hero-stat-num{font-size:20px;font-weight:600;color:#fff}
+.hero-stat-label{font-size:11px;color:rgba(255,255,255,0.6);margin-top:1px}
+
+/* TERMS */
+.terms-banner{background:var(--navy-light);border:0.5px solid var(--navy-border);border-radius:12px;padding:18px 22px;margin-bottom:28px}
+.terms-banner-title{font-size:12px;font-weight:600;color:var(--navy);margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.terms-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.terms-item{display:flex;gap:8px;align-items:flex-start}
+.terms-bullet{width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.terms-bullet.remote{background:#e0f2fe}
+.terms-bullet.unpaid{background:#fff3e0}
+.terms-bullet.time{background:#fce4ec}
+.terms-bullet.connect{background:var(--navy-light);border:0.5px solid var(--navy-border)}
+.terms-item-text{font-size:12px;line-height:1.55;color:var(--text)}
+.terms-item-text b{font-weight:600;color:var(--navy)}
+
+/* FORM CARD */
+.form-card{background:var(--surface);border:0.5px solid var(--border);border-radius:16px;overflow:hidden;box-shadow:0 2px 20px rgba(26,31,94,0.07)}
+
+.form-section{padding:26px 30px;border-bottom:0.5px solid var(--border)}
+.form-section:last-of-type{border-bottom:none}
+.form-section-title{font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--navy-mid);margin-bottom:18px;display:flex;align-items:center;gap:8px}
+.form-section-num{width:20px;height:20px;border-radius:50%;background:var(--navy);color:#fff;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+
+/* FIELDS */
+.field{margin-bottom:16px}
+.field:last-child{margin-bottom:0}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+label{display:block;font-size:12px;font-weight:600;color:var(--text);margin-bottom:5px;line-height:1.4}
+.req{color:var(--error);margin-left:2px}
+.hint{font-weight:400;color:var(--text-muted);font-size:11px;margin-left:4px}
+
+input[type=text],input[type=email],input[type=tel],input[type=url],select,textarea{
+  width:100%;border:0.5px solid rgba(0,0,0,0.18);border-radius:8px;
+  padding:10px 13px;font-size:15px;font-family:inherit;
+  color:var(--text);background:#fafafa;
+  outline:none;transition:border 0.15s,background 0.15s,box-shadow 0.15s;
+  -webkit-appearance:none;appearance:none;
+}
+input:focus,select:focus,textarea:focus{
+  border-color:var(--navy-mid);background:#fff;
+  box-shadow:0 0 0 3px rgba(45,52,148,0.08);
+}
+input::placeholder,textarea::placeholder{color:#bbb;font-size:14px}
+textarea{resize:vertical;min-height:96px;line-height:1.65;font-size:14px}
+select{
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 12px center;
+  padding-right:36px;cursor:pointer;
+}
+input.invalid,select.invalid,textarea.invalid{border-color:#e74c3c !important;background:#fff8f8}
+.field-error{font-size:11px;color:var(--error);margin-top:4px;display:none}
+
+/* CHIPS */
+.chip-group{display:flex;flex-wrap:wrap;gap:7px;margin-top:6px}
+.chip-check{position:relative}
+.chip-check input{position:absolute;opacity:0;width:0;height:0}
+.chip-check label{
+  display:inline-block;padding:7px 14px;border-radius:20px;
+  font-size:12px;font-weight:500;
+  border:0.5px solid rgba(0,0,0,0.15);background:#fafafa;
+  color:var(--text-muted);cursor:pointer;
+  transition:all 0.15s;user-select:none;margin:0;
+}
+.chip-check input:checked+label{background:var(--navy);color:#fff;border-color:var(--navy)}
+.chip-check label:hover{border-color:var(--navy);color:var(--navy)}
+
+/* SUPERVISOR TOGGLE */
+.supervisor-check-row{display:flex;align-items:flex-start;gap:10px;padding:14px 16px;background:#f9fafb;border:0.5px solid var(--border);border-radius:10px;cursor:pointer;margin-bottom:16px}
+.supervisor-check-row input[type=checkbox]{width:18px;height:18px;accent-color:var(--navy);cursor:pointer;flex-shrink:0;margin-top:1px}
+.supervisor-check-row span{font-size:13px;color:var(--text);line-height:1.5}
+.supervisor-check-row span b{color:var(--navy)}
+.sup-note{font-size:12px;color:var(--text-muted);margin-bottom:14px;line-height:1.55}
+
+/* AGREE */
+.agree-section{padding:18px 30px;background:var(--navy-light);border-top:0.5px solid var(--navy-border)}
+.agree-row{display:flex;gap:10px;align-items:flex-start}
+.agree-row input[type=checkbox]{width:18px;height:18px;accent-color:var(--navy);cursor:pointer;flex-shrink:0;margin-top:2px}
+.agree-row label{font-size:12px;color:var(--text);line-height:1.65;cursor:pointer;margin:0}
+.agree-row label b{color:var(--navy)}
+
+/* SUBMIT */
+.submit-area{padding:22px 30px;background:var(--surface);border-top:0.5px solid var(--border);display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.submit-btn{
+  background:var(--navy);color:#fff;border:none;border-radius:10px;
+  padding:13px 28px;font-size:14px;font-weight:600;
+  cursor:pointer;font-family:inherit;
+  transition:opacity 0.15s;
+  display:inline-flex;align-items:center;gap:8px;
+}
+.submit-btn:hover{opacity:0.88}
+.submit-btn:disabled{opacity:0.4;cursor:not-allowed}
+.submit-note{font-size:12px;color:var(--text-muted);line-height:1.5}
+
+/* SUCCESS */
+.success-screen{display:none;padding:56px 30px;text-align:center}
+.success-icon{width:60px;height:60px;border-radius:50%;background:var(--success-bg);display:flex;align-items:center;justify-content:center;margin:0 auto 20px}
+.success-title{font-size:20px;font-weight:600;color:var(--navy);margin-bottom:10px}
+.success-sub{font-size:14px;color:var(--text-muted);line-height:1.75;max-width:440px;margin:0 auto}
+
+/* FOOTER */
+.footer{margin-top:28px;text-align:center;font-size:12px;color:var(--text-muted)}
+.footer a{color:var(--navy-mid)}
+
+/* MOBILE */
+@media(max-width:600px){
+  body{padding:16px 14px 48px}
+  .site-header{margin-bottom:24px}
+  .site-header img{height:36px}
+  .hero{padding:24px 20px;border-radius:12px;margin-bottom:20px}
+  .hero h1{font-size:19px}
+  .hero p{font-size:13px}
+  .hero-stats{gap:18px;margin-top:18px;padding-top:16px}
+  .hero-stat-num{font-size:18px}
+  .terms-banner{padding:14px 16px;margin-bottom:20px}
+  .terms-grid{grid-template-columns:1fr}
+  .form-section{padding:18px 16px}
+  .field-row{grid-template-columns:1fr}
+  .agree-section{padding:16px}
+  .submit-area{padding:16px;flex-direction:column;align-items:stretch}
+  .submit-btn{justify-content:center;padding:14px}
+  .success-screen{padding:40px 20px}
+  input[type=text],input[type=email],input[type=tel],input[type=url],select,textarea{font-size:16px}
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+</style>
+</head>
+<body>
+<div class="page">
+
+<!-- HEADER -->
+<div class="site-header">
+  <img src="cyp-logo.png" alt="Centre for Youth Policy"/>
+  <div class="site-header-divider"></div>
+  <div>
+    <div class="site-header-eyebrow">Centre for Youth Policy</div>
+    <div class="site-header-title">Staffing for International Representatives</div>
+  </div>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <svg class="hero-chakra" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="100" cy="100" r="95" fill="none" stroke="white" stroke-width="6"/>
+    <circle cx="100" cy="100" r="18" fill="none" stroke="white" stroke-width="5"/>
+    <line x1="100" y1="18" x2="100" y2="82" stroke="white" stroke-width="3"/>
+    <line x1="145" y1="28" x2="117" y2="85" stroke="white" stroke-width="3"/>
+    <line x1="178" y1="60" x2="130" y2="110" stroke="white" stroke-width="3"/>
+    <line x1="185" y1="105" x2="121" y2="108" stroke="white" stroke-width="3"/>
+    <line x1="165" y1="148" x2="115" y2="120" stroke="white" stroke-width="3"/>
+    <line x1="128" y1="182" x2="105" y2="130" stroke="white" stroke-width="3"/>
+    <line x1="82" y1="185" x2="95" y2="130" stroke="white" stroke-width="3"/>
+    <line x1="42" y1="165" x2="87" y2="120" stroke="white" stroke-width="3"/>
+    <line x1="16" y1="128" x2="82" y2="108" stroke="white" stroke-width="3"/>
+    <line x1="18" y1="78" x2="82" y2="92" stroke="white" stroke-width="3"/>
+    <line x1="42" y1="40" x2="88" y2="88" stroke="white" stroke-width="3"/>
+    <line x1="82" y1="18" x2="95" y2="82" stroke="white" stroke-width="3"/>
+  </svg>
+  <div class="hero-tag"><div class="hero-dot"></div>Now accepting representative applications</div>
+  <h1>Request a dedicated intern for your office</h1>
+  <p>The Centre for Youth Policy connects elected representatives and their teams with motivated interns from around the world — from Yale Environmental School graduates and IIT engineers to business school grads across Europe and humanities scholars from every corner of the globe. Tell us about your office and we will find your match.</p>
+  <div class="hero-stats">
+    <div><div class="hero-stat-num">12+</div><div class="hero-stat-label">Representatives placed globally</div></div>
+    <div><div class="hero-stat-num">100%</div><div class="hero-stat-label">Remote and flexible</div></div>
+    <div><div class="hero-stat-num">5 hrs</div><div class="hero-stat-label">Per week commitment</div></div>
+  </div>
+</div>
+
+<!-- TERMS -->
+<div class="terms-banner">
+  <div class="terms-banner-title">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#1a1f5e" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4m0 4h.01"/></svg>
+    Programme terms for representatives
+  </div>
+  <div class="terms-grid">
+    <div class="terms-item">
+      <div class="terms-bullet remote"><svg width="10" height="10" viewBox="0 0 24 24" fill="none"><rect x="2" y="3" width="20" height="14" rx="2" stroke="#0369a1" stroke-width="2"/><path d="M8 21h8M12 17v4" stroke="#0369a1" stroke-width="2" stroke-linecap="round"/></svg></div>
+      <div class="terms-item-text"><b>Fully remote.</b> All placements are conducted online. No relocation required.</div>
+    </div>
+    <div class="terms-item">
+      <div class="terms-bullet unpaid"><svg width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" stroke="#b45309" stroke-width="2" stroke-linecap="round"/></svg></div>
+      <div class="terms-item-text"><b>Volunteer basis.</b> Interns are unpaid. No financial obligation from your office.</div>
+    </div>
+    <div class="terms-item">
+      <div class="terms-bullet time"><svg width="10" height="10" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#9d174d" stroke-width="2"/><path d="M12 7v5l3 3" stroke="#9d174d" stroke-width="2" stroke-linecap="round"/></svg></div>
+      <div class="terms-item-text"><b>4-6 months, ~5 hrs/week.</b> Flexible scheduling agreed between you and your intern.</div>
+    </div>
+    <div class="terms-item">
+      <div class="terms-bullet connect"><svg width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke="#2d3494" stroke-width="2"/><circle cx="9" cy="7" r="4" stroke="#2d3494" stroke-width="2"/></svg></div>
+      <div class="terms-item-text"><b>CYP connects only.</b> We facilitate the match. The working relationship is between you and your intern.</div>
+    </div>
+  </div>
+</div>
+
+<!-- FORM -->
+<div class="form-card" id="formCard">
+
+  <!-- S1: Representative -->
+  <div class="form-section">
+    <div class="form-section-title"><div class="form-section-num">1</div>About the representative</div>
+    <div class="field-row">
+      <div class="field">
+        <label>Representative full name <span class="req">*</span></label>
+        <input type="text" id="rep_name" placeholder="e.g. Hon. Amara Diallo" autocomplete="name"/>
+        <div class="field-error" id="err_rep_name">Please enter the representative name.</div>
+      </div>
+      <div class="field">
+        <label>Representative email <span class="req">*</span></label>
+        <input type="email" id="rep_email" placeholder="e.g. office@parliament.gov" autocomplete="email"/>
+        <div class="field-error" id="err_rep_email">Please enter a valid email.</div>
+      </div>
+    </div>
+    <div class="field-row">
+      <div class="field">
+        <label>Country <span class="req">*</span></label>
+        <input type="text" id="rep_country" placeholder="e.g. Senegal, India, Colombia"/>
+        <div class="field-error" id="err_rep_country">Please enter the country.</div>
+      </div>
+      <div class="field">
+        <label>Title or role <span class="req">*</span></label>
+        <input type="text" id="rep_role" placeholder="e.g. MP, City Councillor, Senator"/>
+        <div class="field-error" id="err_rep_role">Please enter the representative role.</div>
+      </div>
+    </div>
+    <div class="field">
+      <label>Parliament, assembly, or institution <span class="req">*</span></label>
+      <input type="text" id="rep_institution" placeholder="e.g. National Assembly of Senegal, New York City Council"/>
+      <div class="field-error" id="err_rep_institution">Please enter the institution.</div>
+    </div>
+    <div class="field-row">
+      <div class="field">
+        <label>WhatsApp number <span class="hint">with country code</span></label>
+        <input type="tel" id="rep_whatsapp" placeholder="e.g. +1 212 555 0100" autocomplete="tel"/>
+      </div>
+      <div class="field">
+        <label>Website or public profile <span class="hint">optional</span></label>
+        <input type="url" id="rep_website" placeholder="https://"/>
+      </div>
+    </div>
+  </div>
+
+  <!-- S2: Supervisor -->
+  <div class="form-section">
+    <div class="form-section-title"><div class="form-section-num">2</div>Intern supervisor</div>
+    <label class="supervisor-check-row" for="self_supervise">
+      <input type="checkbox" id="self_supervise" onchange="toggleSupervisor(this)"/>
+      <span>The <b>representative themselves</b> will directly supervise and manage the intern day-to-day</span>
+    </label>
+    <div id="supervisor_fields">
+      <p class="sup-note">Please provide details of the office staff member who will supervise the intern. This person will be the intern primary point of contact.</p>
+      <div class="field-row">
+        <div class="field">
+          <label>Supervisor full name <span class="req">*</span></label>
+          <input type="text" id="sup_name" placeholder="e.g. Fatima Ndiaye"/>
+          <div class="field-error" id="err_sup_name">Please enter the supervisor name.</div>
+        </div>
+        <div class="field">
+          <label>Supervisor email <span class="req">*</span></label>
+          <input type="email" id="sup_email" placeholder="e.g. fatima@office.gov"/>
+          <div class="field-error" id="err_sup_email">Please enter a valid supervisor email.</div>
+        </div>
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label>Supervisor role or title</label>
+          <input type="text" id="sup_role" placeholder="e.g. Chief of Staff, Policy Advisor"/>
+        </div>
+        <div class="field">
+          <label>Supervisor WhatsApp <span class="hint">with country code</span></label>
+          <input type="tel" id="sup_whatsapp" placeholder="e.g. +44 7700 900456"/>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- S3: Policy Focus -->
+  <div class="form-section">
+    <div class="form-section-title"><div class="form-section-num">3</div>Policy focus</div>
+    <div class="field">
+      <label>Which policy areas does your office focus on? <span class="req">*</span><span class="hint">Select all that apply</span></label>
+      <div class="chip-group">
+        <div class="chip-check"><input type="checkbox" id="p1" name="policy" value="Climate &amp; Environment"/><label for="p1">Climate &amp; Environment</label></div>
+        <div class="chip-check"><input type="checkbox" id="p2" name="policy" value="Energy &amp; Clean Technology"/><label for="p2">Energy &amp; Clean Technology</label></div>
+        <div class="chip-check"><input type="checkbox" id="p3" name="policy" value="Urban Planning &amp; Housing"/><label for="p3">Urban Planning &amp; Housing</label></div>
+        <div class="chip-check"><input type="checkbox" id="p4" name="policy" value="Education &amp; Skills"/><label for="p4">Education &amp; Skills</label></div>
+        <div class="chip-check"><input type="checkbox" id="p5" name="policy" value="Public Health"/><label for="p5">Public Health</label></div>
+        <div class="chip-check"><input type="checkbox" id="p6" name="policy" value="Gender Equality &amp; Rights"/><label for="p6">Gender Equality &amp; Rights</label></div>
+        <div class="chip-check"><input type="checkbox" id="p7" name="policy" value="Economic Justice &amp; Labour"/><label for="p7">Economic Justice &amp; Labour</label></div>
+        <div class="chip-check"><input type="checkbox" id="p8" name="policy" value="Digital Rights &amp; AI Governance"/><label for="p8">Digital Rights &amp; AI Governance</label></div>
+        <div class="chip-check"><input type="checkbox" id="p9" name="policy" value="Trade &amp; Finance"/><label for="p9">Trade &amp; Finance</label></div>
+        <div class="chip-check"><input type="checkbox" id="p10" name="policy" value="Peace &amp; Security"/><label for="p10">Peace &amp; Security</label></div>
+        <div class="chip-check"><input type="checkbox" id="p11" name="policy" value="Migration &amp; Refugees"/><label for="p11">Migration &amp; Refugees</label></div>
+        <div class="chip-check"><input type="checkbox" id="p12" name="policy" value="Food &amp; Agriculture"/><label for="p12">Food &amp; Agriculture</label></div>
+        <div class="chip-check"><input type="checkbox" id="p13" name="policy" value="Justice &amp; Rule of Law"/><label for="p13">Justice &amp; Rule of Law</label></div>
+        <div class="chip-check"><input type="checkbox" id="p14" name="policy" value="Youth Representation"/><label for="p14">Youth Representation</label></div>
+      </div>
+      <div class="field-error" id="err_policy">Please select at least one policy area.</div>
+    </div>
+    <div class="field" style="margin-top:16px">
+      <label>Describe your office current priorities <span class="req">*</span></label>
+      <textarea id="rep_priorities" placeholder="Tell us what your office is working on right now and what you hope an intern can contribute to..."></textarea>
+      <div class="field-error" id="err_rep_priorities">Please describe your priorities.</div>
+    </div>
+  </div>
+
+  <!-- S4: Intern Needs -->
+  <div class="form-section">
+    <div class="form-section-title"><div class="form-section-num">4</div>What you need from an intern</div>
+    <div class="field">
+      <label>Type of work you need support with <span class="req">*</span><span class="hint">Select all that apply</span></label>
+      <div class="chip-group">
+        <div class="chip-check"><input type="checkbox" id="w1" name="work" value="Legislative Research"/><label for="w1">Legislative Research</label></div>
+        <div class="chip-check"><input type="checkbox" id="w2" name="work" value="Policy Drafting"/><label for="w2">Policy Drafting</label></div>
+        <div class="chip-check"><input type="checkbox" id="w3" name="work" value="Campaign Strategy"/><label for="w3">Campaign Strategy</label></div>
+        <div class="chip-check"><input type="checkbox" id="w4" name="work" value="Social Media &amp; Comms"/><label for="w4">Social Media &amp; Comms</label></div>
+        <div class="chip-check"><input type="checkbox" id="w5" name="work" value="Speech &amp; Report Writing"/><label for="w5">Speech &amp; Report Writing</label></div>
+        <div class="chip-check"><input type="checkbox" id="w6" name="work" value="International Outreach"/><label for="w6">International Outreach</label></div>
+        <div class="chip-check"><input type="checkbox" id="w7" name="work" value="Parliamentary Monitoring"/><label for="w7">Parliamentary Monitoring</label></div>
+        <div class="chip-check"><input type="checkbox" id="w8" name="work" value="Data &amp; Analytics"/><label for="w8">Data &amp; Analytics</label></div>
+        <div class="chip-check"><input type="checkbox" id="w9" name="work" value="Event Organisation"/><label for="w9">Event Organisation</label></div>
+        <div class="chip-check"><input type="checkbox" id="w10" name="work" value="Stakeholder Engagement"/><label for="w10">Stakeholder Engagement</label></div>
+        <div class="chip-check"><input type="checkbox" id="w11" name="work" value="Media &amp; Press Relations"/><label for="w11">Media &amp; Press Relations</label></div>
+        <div class="chip-check"><input type="checkbox" id="w12" name="work" value="Constituency Work"/><label for="w12">Constituency Work</label></div>
+      </div>
+      <div class="field-error" id="err_work">Please select at least one work type.</div>
+    </div>
+    <div class="field-row" style="margin-top:16px">
+      <div class="field">
+        <label>Preferred intern language(s) <span class="req">*</span></label>
+        <input type="text" id="rep_languages" placeholder="e.g. English, French, Spanish"/>
+        <div class="field-error" id="err_rep_languages">Please enter language preferences.</div>
+      </div>
+      <div class="field">
+        <label>Hours available to manage intern per week</label>
+        <select id="rep_hours">
+          <option value="">Select...</option>
+          <option value="1-2 hours">1-2 hours</option>
+          <option value="2-4 hours">2-4 hours</option>
+          <option value="4-6 hours">4-6 hours</option>
+          <option value="6+ hours">6+ hours</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- S5: Timing -->
+  <div class="form-section">
+    <div class="form-section-title"><div class="form-section-num">5</div>Timing and availability</div>
+    <div class="field-row">
+      <div class="field">
+        <label>Preferred start date <span class="req">*</span></label>
+        <input type="text" id="rep_start" placeholder="e.g. June 2026, flexible"/>
+        <div class="field-error" id="err_rep_start">Please enter a preferred start date.</div>
+      </div>
+      <div class="field">
+        <label>Preferred placement duration</label>
+        <select id="rep_duration">
+          <option value="">Select...</option>
+          <option value="4 months">4 months</option>
+          <option value="5 months">5 months</option>
+          <option value="6 months">6 months</option>
+          <option value="Flexible">Flexible</option>
+        </select>
+      </div>
+    </div>
+    <div class="field" style="margin-top:4px">
+      <label>Additional notes for the CYP team <span class="hint">optional</span></label>
+      <textarea id="rep_notes" placeholder="Anything else you would like us to know about your office or what you are looking for in an intern..."></textarea>
+    </div>
+  </div>
+
+  <!-- AGREE -->
+  <div class="agree-section">
+    <div class="agree-row">
+      <input type="checkbox" id="agree_terms"/>
+      <label for="agree_terms">I have read and understood the programme terms above. I acknowledge that the Centre for Youth Policy acts as a matchmaking body only and bears no responsibility for the day-to-day working relationship between my office and the assigned intern. <b>This does not constitute a formal contract.</b></label>
+    </div>
+  </div>
+
+  <!-- SUBMIT -->
+  <div class="submit-area">
+    <button class="submit-btn" id="submitBtn" onclick="handleSubmit()">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+      Submit application
+    </button>
+    <div class="submit-note">We will review your profile and be in touch within 5 business days.</div>
+  </div>
+
+  <!-- SUCCESS -->
+  <div class="success-screen" id="successScreen">
+    <div class="success-icon">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#15803d" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+    </div>
+    <div class="success-title">Application received</div>
+    <div class="success-sub">Thank you for applying to the CYP Staffing Programme for International Representatives. Our team will review your profile and reach out within 5 business days to discuss your intern match.</div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="footer" style="margin-top:28px">
+  Looking to apply as an intern? <a href="/">Apply here</a> &nbsp;&middot;&nbsp;
+  <a href="https://www.centreforyouthpolicy.org" target="_blank">centreforyouthpolicy.org</a>
+</div>
+
+</div>
+<script>
+var SHEETS_URL="https://script.google.com/macros/s/AKfycbwk4LYmpO-XyFmD-c81qc8ORo97QRmDjb1S_VwN6QsevRBIphkDVBk0Y_evxgBZqPe3/exec";
+
+function toggleSupervisor(cb){
+  var fields=document.getElementById("supervisor_fields");
+  fields.style.display=cb.checked?"none":"block";
+  if(cb.checked){
+    showError("sup_name",false);
+    showError("sup_email",false);
+  }
+}
+
+function getChecked(name){
+  return Array.from(document.querySelectorAll('input[name="'+name+'"]:checked')).map(function(b){return b.value;}).join(", ");
+}
+
+function val(id){
+  var el=document.getElementById(id);
+  return el ? el.value.trim() : "";
+}
+
+function showError(id,show){
+  var errEl=document.getElementById("err_"+id);
+  var inputEl=document.getElementById(id);
+  if(errEl) errEl.style.display=show?"block":"none";
+  if(inputEl){
+    if(show) inputEl.classList.add("invalid");
+    else inputEl.classList.remove("invalid");
+  }
+}
+
+function validate(){
+  var ok=true;
+  var selfSupervise=document.getElementById("self_supervise").checked;
+  var required=["rep_name","rep_email","rep_country","rep_role","rep_institution","rep_priorities","rep_languages","rep_start"];
+  if(!selfSupervise){required.push("sup_name");required.push("sup_email");}
+  required.forEach(function(id){
+    var v=val(id);
+    var invalid=!v;
+    if(id==="rep_email"||id==="sup_email") invalid=!v||!/\S+@\S+\.\S+/.test(v);
+    showError(id,invalid);
+    if(invalid) ok=false;
+  });
+  var noPolicy=!getChecked("policy");
+  document.getElementById("err_policy").style.display=noPolicy?"block":"none";
+  if(noPolicy) ok=false;
+  var noWork=!getChecked("work");
+  document.getElementById("err_work").style.display=noWork?"block":"none";
+  if(noWork) ok=false;
+  if(!document.getElementById("agree_terms").checked){
+    alert("Please agree to the programme terms before submitting.");
+    ok=false;
+  }
+  return ok;
+}
+
+function handleSubmit(){
+  if(!validate()) return;
+  var btn=document.getElementById("submitBtn");
+  btn.disabled=true;
+  btn.innerHTML='<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="animation:spin 0.7s linear infinite"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg> Submitting...';
+  var selfSupervise=document.getElementById("self_supervise").checked;
+  var data={
+    form_type:"mp",
+    rep_name:val("rep_name"),
+    rep_email:val("rep_email"),
+    rep_whatsapp:val("rep_whatsapp"),
+    rep_country:val("rep_country"),
+    rep_role:val("rep_role"),
+    rep_institution:val("rep_institution"),
+    rep_website:val("rep_website"),
+    sup_name:selfSupervise?"Representative (self-supervising)":val("sup_name"),
+    sup_email:selfSupervise?"":val("sup_email"),
+    sup_role:selfSupervise?"":val("sup_role"),
+    sup_whatsapp:selfSupervise?"":val("sup_whatsapp"),
+    rep_policy_areas:getChecked("policy"),
+    rep_priorities:val("rep_priorities"),
+    rep_work_types:getChecked("work"),
+    rep_languages:val("rep_languages"),
+    rep_hours:val("rep_hours"),
+    rep_start:val("rep_start"),
+    rep_duration:val("rep_duration"),
+    rep_notes:val("rep_notes"),
+    terms_agreed:"Yes"
+  };
+  var params=Object.keys(data).map(function(k){return encodeURIComponent(k)+"="+encodeURIComponent(data[k]||"");}).join("&");
+  var script=document.createElement("script");
+  script.src=SHEETS_URL+"?"+params+"&callback=mpCallback";
+  window.mpCallback=function(){showSuccess();};
+  setTimeout(showSuccess,6000);
+  document.head.appendChild(script);
+}
+
+function showSuccess(){
+  if(document.getElementById("successScreen").style.display==="block") return;
+  var card=document.getElementById("formCard");
+  Array.from(card.children).forEach(function(el){
+    if(el.id!=="successScreen") el.style.display="none";
+  });
+  document.getElementById("successScreen").style.display="block";
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+</script>
+</body>
+</html>
